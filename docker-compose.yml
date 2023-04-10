@@ -1,25 +1,17 @@
 version: "3.3"
 services:
-  db:
-    image: postgres
-    restart: always
-    env_file:
-      - ./db.env
-    volumes:
-      - postgres_data:/var/lib/postgresql/data/
-    expose:
-      - "5432"
-  app :
+  zip_codes:
     build:
       context: .
       dockerfile: ./app/Dockerfile
     entrypoint: ./start.sh
     ports:
-      - "${POSTAL_CODES_MX_PORT}:8000"
-    env_file:
-      - ./db.env
-    depends_on:
-      - db
-
-volumes:
-  postgres_data:
+      - "8055:8000"
+    environment:
+      - POSTGRES_USER=de_test_user
+      - POSTGRES_PASSWORD=xNVxfTPR4LjghWPmM72Se
+      - POSTGRES_DB=mex_zip
+      - POSTGRES_HOST=10.10.10.140
+      - POSTGRES_PORT=5432
+      - POSTAL_CODES_MX_PORT=8055
+      - SECRET_KEY="@cU4dkKf@^JyJU3AfCvjfwzZeF&Fowxd*MwGs&XXs6gZ4kLd"

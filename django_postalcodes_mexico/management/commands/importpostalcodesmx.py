@@ -29,6 +29,7 @@ class Command(BaseCommand):
 
     def get_function_for_processing_xml_postal_codes(self, xml_file_name):
         if xml_file_name:
+            print("Processing xml file... Pelota")
             return parse_xml_postal_codes_file(xml_file_name)
         return get_xml_postal_codes_data()
 

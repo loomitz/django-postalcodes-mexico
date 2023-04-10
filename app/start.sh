@@ -1,9 +1,10 @@
 #!/bin/bash
 # Run migrations
-echo "Migrating the database before starting the server"
+echo "Migrating the database before starting the server ostia"
 python manage.py makemigrations
 python manage.py migrate
-python manage.py importpostalcodesmx
+echo "listo para importar"
+python manage.py importpostalcodesmx --file=./codigos/CPdescarga.xml
 # Start Gunicorn
 echo "Starting Gunicorn."
 exec gunicorn codigosPostalesMx.wsgi:application \
